@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Animation while loading game scene
+/// </summary>
 public class LoadingAnimation : MonoBehaviour
 {
 

@@ -2,23 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+///  Manages ambiant music during main game
+/// </summary>
 public class Music : MonoBehaviour
 {
 
-    public AudioClip[] musics;
-    private AudioSource audioSource;
+    public AudioClip[] musics;          //normal audio collection
+    private AudioSource audioSource;    //audio source
+    public AudioClip level2;            //special audio for level 2
+    private int level = 1;              //level number
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         playNewMusic();
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -31,11 +30,33 @@ public class Music : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// change level
+    /// </summary>
+    /// <param name="nbr">level number</param>
+    public void changeLevel(int nbr)
+    {
+        level = nbr;
+        playNewMusic();
+    }
+
+    /// <summary>
+    /// choose next music
+    /// </summary>
     private void playNewMusic()
     {
-        //choose a random music and play it
-        int randClip = Random.Range(0, musics.Length);
-        audioSource.clip = musics[randClip];
-        audioSource.Play();
+        switch (level)
+        {
+            case 1:
+                //choose a random music and play it
+                int randClip = Random.Range(0, musics.Length);
+                audioSource.clip = musics[randClip];
+                audioSource.Play();
+                break;
+            case 2:
+                audioSource.clip = level2;
+                audioSource.Play();
+                break;
+        }
     }
 }

@@ -5,6 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - LoadingScreen
+  - FxTemporaire
+  - GunSound
+  - Ennemy
+  - EnnemyAttackCollider
+  - Torch
+  - ZombieAudioSource
+  - Wall
+  - Rabbit
+  - Level2Start
+  - Ground
+  - Level1
+  - Lvl2Cam
   layers:
   - Default
   - TransparentFX

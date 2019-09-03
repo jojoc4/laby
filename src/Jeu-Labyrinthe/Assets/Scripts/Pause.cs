@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manage in-game pause menu
+/// </summary>
 public class Pause : MonoBehaviour
 {
     public GameObject[] pauseObjects;
@@ -34,6 +37,8 @@ public class Pause : MonoBehaviour
         {
             Time.timeScale = 0;
             g.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -43,6 +48,8 @@ public class Pause : MonoBehaviour
         {
             Time.timeScale = 1;
             g.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
