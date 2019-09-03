@@ -3,3 +3,8 @@ nvidia geforce 930mx ou supérieur (intel hd non supporté)
 8go ram
 1.5 go dd
 
+exécuter:
+.net 4.x minimum
+
+ouverture du projet:
+unity 2019.2.1f1
