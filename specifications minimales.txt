@@ -1,0 +1,5 @@
+intel core i3-6006U/amd fx 4350 ou équivalent
+nvidia geforce 930mx ou supérieur (intel hd non supporté)
+8go ram
+1.5 go dd
+
