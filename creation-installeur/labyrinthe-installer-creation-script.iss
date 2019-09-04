@@ -5,7 +5,7 @@
 #define MyAppVersion "1.0"
 #define MyAppPublisher "HE-Arc"
 #define MyAppURL "https://forge.ing.he-arc.ch/gitlab/inf/1819/projets-p2-hes-ete/labyrinthe/labyrinthe"
-#define MyAppExeName "Jeu-Labyrinthe.exe"  
+#define MyAppExeName "Labyrinthe.exe"  
 #define MyAppIcoName "labyrinthe.ico"
 #define MyAppGroupName "Labyrinthe"
 #define MyAppUninstaller "unins000.exe"
@@ -44,7 +44,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 Source: "{#BuildDir}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourceDir}\{#MyAppIcoName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BuildDir}\Jeu-Labyrinthe_Data\*"; DestDir: "{app}\Jeu-Labyrinthe_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#BuildDir}\Labyrinthe_Data\*"; DestDir: "{app}\Jeu-Labyrinthe_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#BuildDir}\MonoBleedingEdge\*"; DestDir: "{app}\MonoBleedingEdge"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#BuildDir}\UnityCrashHandler64.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\UnityPlayer.dll"; DestDir: "{app}"; Flags: ignoreversion
