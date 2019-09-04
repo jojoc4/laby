@@ -25,12 +25,6 @@ public class ZombiesController : MonoBehaviour, EnnemyController
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void FixedUpdate()
     {
         // If the player is focused
@@ -47,6 +41,7 @@ public class ZombiesController : MonoBehaviour, EnnemyController
             if (distance <= maxDistance) {
                 anim.SetBool("attack", true);
                 anim.SetBool("walk", false);
+
                 GetComponentInChildren<AudioSource>().gameObject.GetComponent<Zombie>().changemode(2);
             } else {
                 anim.SetBool("attack", false);
@@ -64,6 +59,7 @@ public class ZombiesController : MonoBehaviour, EnnemyController
         anim.SetBool("attack", false);
         anim.SetBool("walk", false);
         anim.SetBool("dead", true);
+
         aggro = false;
         aggroOnAttack = false;
 

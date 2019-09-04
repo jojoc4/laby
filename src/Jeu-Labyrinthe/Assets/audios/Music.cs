@@ -55,6 +55,7 @@ public class Music : MonoBehaviour
                 break;
             case 2:
                 audioSource.clip = level2;
+                audioSource.volume = 0.5f;
                 audioSource.Play();
                 break;
         }

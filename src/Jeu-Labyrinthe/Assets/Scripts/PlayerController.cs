@@ -10,74 +10,83 @@ public class PlayerController : MonoBehaviour
     public float speed = 4.0f;
     public int startingHealth = 20;
 
-    public CharacterController _charCont;
+    public CharacterController charCont;
     public AudioSource walkingSource;
     public AudioSource screamingSource;
 
-    public Camera MainCamera;
-    public Camera Level2Camera;
+    public Camera mainCamera;
+    public Camera level2Camera;
 
     private GameObject torch;
 
     private int health;
     private float gravity = 0.25f;
-    private bool falling;
     private bool levelling;
+    private bool reachedLevel;
     private int level;
+    private Vector3 movement;
 
     // Use this for initialization
     void Start()
     {
         this.health = this.startingHealth;
         this.torch = GameObject.FindWithTag("Torch");
-        this.falling = true;
         this.levelling = false;
+        this.reachedLevel = false;
         this.level = 1;
 
-        Level2Camera.gameObject.SetActive(false);
-        MainCamera.gameObject.SetActive(true);
+        this.movement = new Vector3(0f, 0f, 0f);
+
+        level2Camera.gameObject.SetActive(false);
+        mainCamera.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Lights"))
+        if (Time.timeScale != 0)
         {
-            toggleTorch();
+            if (Input.GetButtonDown("Lights"))
+            {
+                toggleTorch();
+            }
+
+            if (levelling)
+            {
+                //change camera
+                level2Camera.gameObject.SetActive(true);
+                mainCamera.gameObject.SetActive(false);
+            }
+            else if (reachedLevel)
+            {
+                //change camera
+                mainCamera.gameObject.SetActive(true);
+                level2Camera.gameObject.SetActive(false);
+
+                //stop levelling
+                levelling = false;
+                reachedLevel = false;
+
+                //Play next level's theme music
+                mainCamera.gameObject.GetComponentInChildren<Music>().changeLevel(++this.level);
+            }
+
+            //apply movement once per frame, so charCont.isGrounded doesn't get all f****d up
+            charCont.Move(movement);
         }
     }
     
     void FixedUpdate()
     {
-        float verticalVelocity = 0f;
-
-        //Only fall when the player is not on the ground
-        if (_charCont.isGrounded || !falling)
+        //Only move when on the ground
+        if (charCont.isGrounded)
         {
-            falling = false;
-            //If advancing to the next level
-            if(levelling)
+            if (levelling)
             {
                 levelling = false;
-
-                //change camera
-                MainCamera.gameObject.SetActive(true);
-                Level2Camera.gameObject.SetActive(false);
-
-                //Play next level's theme music
-                MainCamera.gameObject.GetComponentInChildren<Music>().changeLevel(++this.level);
+                reachedLevel = true;
             }
-        } else
-        {
-            verticalVelocity = -gravity;
-            falling = true;
-        }
 
-        Vector3 movement = new Vector3(0f, verticalVelocity, 0f);
-
-        //Allow movement only when on the ground
-        if (!falling)
-        {
             movement.x = Input.GetAxis("Horizontal") * speed;
             movement.z = Input.GetAxis("Vertical") * speed;
             movement = Vector3.ClampMagnitude(movement, speed); //Limits the max speed of the player
@@ -85,6 +94,7 @@ public class PlayerController : MonoBehaviour
             movement *= Time.deltaTime;     //Ensures the speed the player moves does not change based on frame rate
             movement = transform.TransformDirection(movement);
 
+            //Walking sound management
             if (movement.x != 0 || movement.z != 0)
             {
                 if (!walkingSource.isPlaying)
@@ -96,9 +106,12 @@ public class PlayerController : MonoBehaviour
                     walkingSource.Stop();
             }
         }
-
-        //apply movement
-        _charCont.Move(movement);
+        else
+        {
+            movement.y = -gravity;
+            movement.x = 0f;
+            movement.z = 0f;
+        }
     }
 
     /// <summary>
@@ -146,12 +159,14 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void fallToNextLevel()
     {
-        GameObject.FindWithTag("Level1").SetActive(false);
+        string levelName = "Level" + this.level;
+        GameObject.FindWithTag(levelName).SetActive(false);
 
-        falling = true;
         levelling = true;
+        reachedLevel = false;
 
-        Level2Camera.gameObject.SetActive(true);
-        MainCamera.gameObject.SetActive(false);
+        //Stop walking sound as we can't walk while falling
+        if (walkingSource.isPlaying)
+            walkingSource.Stop();
     }
 }

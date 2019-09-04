@@ -1277,7 +1277,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'move: WASD
 
-    pause: ESC'
+    pause: ESC
+
+    toggle light: L'
 --- !u!222 &1157573882
 CanvasRenderer:
   m_ObjectHideFlags: 0
