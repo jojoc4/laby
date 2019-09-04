@@ -42,4 +42,5 @@ Assets/StreamingAssets/crashlytics-build.properties
 # Astah lock files
 *.asta.lock
 
-
+# Exe
+*.exe
