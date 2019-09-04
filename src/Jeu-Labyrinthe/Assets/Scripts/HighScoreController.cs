@@ -13,7 +13,7 @@ public class HighScoreController : MonoBehaviour
     public Text topTab_name;
     public Text topTab_time;
     public Text yourScore;
-    public InputField name;
+    public InputField nameField;
     public Button submit;
 
     private long time;
@@ -27,7 +27,7 @@ public class HighScoreController : MonoBehaviour
 
     public void AddTime()
     {
-        StartCoroutine(pushScore(time, name.text));
+        StartCoroutine(pushScore(time, nameField.text));
     }
 
     /// push score on webserver

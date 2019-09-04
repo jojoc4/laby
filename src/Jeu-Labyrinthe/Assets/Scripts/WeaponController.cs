@@ -72,7 +72,7 @@ public class WeaponController : MonoBehaviour
     /// </summary>
     private void recoiling()
     {
-        if (recoil > 0f)
+        if (Time.timeScale != 0 && recoil > 0f)
         {
             float xDiff = recoilSpeed ;
             weapon.transform.localEulerAngles -= new Vector3(xDiff, 0, 0);

@@ -1596,7 +1596,7 @@ MonoBehaviour:
   topTab_name: {fileID: 32586105}
   topTab_time: {fileID: 172191149}
   yourScore: {fileID: 456690799}
-  name: {fileID: 1513944080}
+  nameField: {fileID: 1513944080}
   submit: {fileID: 1780791634}
 --- !u!114 &1201535461
 MonoBehaviour:
