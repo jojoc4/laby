@@ -44,7 +44,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 Source: "{#BuildDir}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourceDir}\{#MyAppIcoName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BuildDir}\Labyrinthe_Data\*"; DestDir: "{app}\Jeu-Labyrinthe_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#BuildDir}\Labyrinthe_Data\*"; DestDir: "{app}\Labyrinthe_Data"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#BuildDir}\MonoBleedingEdge\*"; DestDir: "{app}\MonoBleedingEdge"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#BuildDir}\UnityCrashHandler64.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BuildDir}\UnityPlayer.dll"; DestDir: "{app}"; Flags: ignoreversion
